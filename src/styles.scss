@@ -6,6 +6,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --grey-color: #b9b9b9;
 }
 
 * {
@@ -38,6 +39,11 @@ ul {
 
 img {
   width: 100%;
+}
+
+hr {
+  border-color: 1px solid var(--grey-color);
+  margin: 1rem 0;
 }
 
 .container {
@@ -114,6 +120,7 @@ img {
   background: none;
   padding: 0;
   margin: 0;
+  border: none;
 }
 
 .btn-block {
