@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
-import {HomeComponent} from "./front/home/home.component";
-import {PostComponent} from "./front/post/post.component";
+import {HomePageComponent} from "./front/home-page/home-page.component";
+import {PostPageComponent} from "./front/post-page/post-page.component";
 
 const routes: Routes = [
   {
@@ -16,11 +16,11 @@ const routes: Routes = [
       },
       {
         path: '',
-        component: HomeComponent
+        component: HomePageComponent
       },
       {
         path: 'post/:id',
-        component: PostComponent
+        component: PostPageComponent
       }
     ]
   },
