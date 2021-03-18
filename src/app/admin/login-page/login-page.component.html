@@ -38,8 +38,8 @@
   <div class="form-control">
     <button type="submit"
             class="btn btn-primary"
+            [disabled]="form.invalid || submitted"
     >
-      <!--            [disabled]="form.invalid"-->
       Enter
     </button>
   </div>
