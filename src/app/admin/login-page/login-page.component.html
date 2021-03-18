@@ -1,1 +1,46 @@
-<p>login-page works!</p>
+<form class="card login-form" [formGroup]="form" (ngSubmit)="formSubmit()">
+  <h2>Login to admin panel</h2>
+    <label class="form-control"
+           [ngClass]="{invalid: form.controls['email'].touched && form.controls['email'].invalid}"
+    >
+      <span class="form-label">Login</span>
+      <input type="email" class="form-input" formControlName="email">
+      <div class="validation"
+           *ngIf="form.controls['email'].touched && form.controls['email'].invalid"
+      >
+        <small *ngIf="form.controls['email'].errors?.required">
+          Email is required
+        </small>
+        <small *ngIf="form.controls['email'].errors?.email">
+          Enter correct email
+        </small>
+      </div>
+    </label>
+
+
+    <label class="form-control"
+           [ngClass]="{invalid: form.controls['password'].touched && form.controls['password'].invalid}"
+    >
+      <span class="form-label">Password</span>
+      <input type="password" class="form-input" formControlName="password">
+      <div class="validation"
+           *ngIf="form.controls['password'].touched && form.controls['password'].invalid"
+      >
+        <small *ngIf="form.controls['password'].errors?.required">
+          Password is required
+        </small>
+        <small *ngIf="form.controls['password'].errors?.minlength">
+          Password must be {{ form.controls['password'].errors?.minlength?.requiredLength }} symbols
+        </small>
+      </div>
+    </label>
+
+  <div class="form-control">
+    <button type="submit"
+            class="btn btn-primary"
+    >
+      <!--            [disabled]="form.invalid"-->
+      Enter
+    </button>
+  </div>
+</form>
