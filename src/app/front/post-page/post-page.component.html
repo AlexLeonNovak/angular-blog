@@ -1,22 +1,22 @@
-<div class="post">
-  <div class="header">
-    <h1>Post title</h1>
+<div class="posts" *ngIf="post$ | async as post; else loading">
+  <div class="post">
+    <div class="header">
+      <h1>{{ post.title }}</h1>
 
-    <button routerLink="/" class="bth btn-link">Home</button>
-  </div>
+      <button routerLink="/" class="bth btn-link">Home</button>
+    </div>
 
-  <div class="info">
-    <strong>Author</strong>
-    <small>17.03.2021</small>
-  </div>
+    <div class="info">
+      <strong>{{post.author}}</strong>
+      <small>{{post.date | date:'dd.MM.yyyy' }}</small>
+    </div>
 
-  <hr>
+    <hr>
 
-  <div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, delectus explicabo, minima odio praesentium quas rem tempore, unde veritatis voluptas voluptatem voluptatibus. Aperiam distinctio eos impedit iste minus rerum saepe, sed temporibus. Corporis eaque eos in natus nisi pariatur porro qui quidem suscipit temporibus? Blanditiis dolores inventore sunt totam voluptates?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, delectus explicabo, minima odio praesentium quas rem tempore, unde veritatis voluptas voluptatem voluptatibus. Aperiam distinctio eos impedit iste minus rerum saepe, sed temporibus. Corporis eaque eos in natus nisi pariatur porro qui quidem suscipit temporibus? Blanditiis dolores inventore sunt totam voluptates?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, delectus explicabo, minima odio praesentium quas rem tempore, unde veritatis voluptas voluptatem voluptatibus. Aperiam distinctio eos impedit iste minus rerum saepe, sed temporibus. Corporis eaque eos in natus nisi pariatur porro qui quidem suscipit temporibus? Blanditiis dolores inventore sunt totam voluptates?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, delectus explicabo, minima odio praesentium quas rem tempore, unde veritatis voluptas voluptatem voluptatibus. Aperiam distinctio eos impedit iste minus rerum saepe, sed temporibus. Corporis eaque eos in natus nisi pariatur porro qui quidem suscipit temporibus? Blanditiis dolores inventore sunt totam voluptates?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, delectus explicabo, minima odio praesentium quas rem tempore, unde veritatis voluptas voluptatem voluptatibus. Aperiam distinctio eos impedit iste minus rerum saepe, sed temporibus. Corporis eaque eos in natus nisi pariatur porro qui quidem suscipit temporibus? Blanditiis dolores inventore sunt totam voluptates?</p>
+    <div [innerHTML]="post.text"></div>
   </div>
 </div>
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>
