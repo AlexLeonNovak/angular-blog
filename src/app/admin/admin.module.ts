@@ -12,6 +12,7 @@ import {AuthService} from './shared/services/auth.service';
 import {SharedModule} from "../shared/shared.module";
 import {AuthGuard} from "./shared/services/auth.guard";
 import {LoggedIdAuthGuard} from "./shared/services/logged-id-auth.guard";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
   declarations: [AdminLayoutComponent, LoginPageComponent, DashpoardPageComponent, CreatePageComponent, EditPageComponent],
@@ -20,6 +21,7 @@ import {LoggedIdAuthGuard} from "./shared/services/logged-id-auth.guard";
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    CKEditorModule,
     RouterModule.forChild([
       {
         path: '',
@@ -38,7 +40,6 @@ import {LoggedIdAuthGuard} from "./shared/services/logged-id-auth.guard";
     RouterModule
   ],
   providers: [
-    AuthService,
     AuthGuard,
     LoggedIdAuthGuard
   ]

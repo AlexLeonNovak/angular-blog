@@ -1,1 +1,47 @@
-<p>create-page works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Create new post</h2>
+
+  <label class="form-control"
+         [ngClass]="{invalid: form.controls['title'].touched && form.controls['title'].invalid}"
+  >
+    <span class="form-label">Title</span>
+    <input type="text" class="form-input" formControlName="title">
+    <div class="validation"
+         *ngIf="form.controls['title'].touched && form.controls['title'].invalid"
+    >
+      <small *ngIf="form.controls['title'].errors?.required">
+        Enter post title
+      </small>
+    </div>
+  </label>
+
+  <label class="form-control">
+    <span class="form-label">Post content</span>
+    <ckeditor [editor]="Editor" [config]="{height: 600}" formControlName="text"></ckeditor>
+  </label>
+
+  <label class="form-control"
+         [ngClass]="{invalid: form.controls['author'].touched && form.controls['author'].invalid}"
+  >
+    <span class="form-label">Author</span>
+    <input type="text" class="form-input" formControlName="author">
+    <div class="validation"
+         *ngIf="form.controls['author'].touched && form.controls['author'].invalid"
+    >
+      <small *ngIf="form.controls['author'].errors?.required">
+        Author is required
+      </small>
+    </div>
+  </label>
+
+  <div class="form-control">
+    <button type="submit"
+            class="btn btn-dark"
+            [disabled]="form.invalid"
+    >
+      Create post
+    </button>
+  </div>
+
+
+</form>
