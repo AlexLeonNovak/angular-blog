@@ -12,6 +12,7 @@ export class DashpoardPageComponent implements OnInit, OnDestroy {
 
   posts: Post[] = [];
   private postSubscription: Subscription = new Subscription();
+  search = '';
 
   constructor(
     private postService: PostService
