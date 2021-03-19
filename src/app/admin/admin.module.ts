@@ -14,6 +14,8 @@ import {AuthGuard} from "./shared/services/auth.guard";
 import {LoggedIdAuthGuard} from "./shared/services/logged-id-auth.guard";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {SearchPipe} from "./shared/pipes/search.pipe";
+import { AlertComponent } from './shared/components/alert/alert.component';
+import {AlertService} from "./shared/services/alert.service";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import {SearchPipe} from "./shared/pipes/search.pipe";
     DashpoardPageComponent,
     CreatePageComponent,
     EditPageComponent,
-    SearchPipe
+    SearchPipe,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +52,8 @@ import {SearchPipe} from "./shared/pipes/search.pipe";
   ],
   providers: [
     AuthGuard,
-    LoggedIdAuthGuard
+    LoggedIdAuthGuard,
+    AlertService
   ]
 })
 export class AdminModule {

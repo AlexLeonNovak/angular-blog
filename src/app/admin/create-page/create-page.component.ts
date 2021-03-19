@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Post} from "../../shared/interfaces";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {PostService} from "../../shared/post.service";
+import {AlertService} from "../shared/services/alert.service";
 
 @Component({
   selector: 'app-create-page',
@@ -20,7 +21,8 @@ export class CreatePageComponent implements OnInit {
   });
 
   constructor(
-    private postService: PostService
+    private postService: PostService,
+    private alert: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -40,9 +42,8 @@ export class CreatePageComponent implements OnInit {
 
     this.postService.create(post).subscribe(() => {
       this.form.reset();
+      this.alert.success('Post created');
     });
-
-    console.log(post);
   }
 
 }
