@@ -34,6 +34,19 @@ export class PostService {
     }));
   }
 
+  getById(id: string): Observable<Post> {
+    return this.http.get<Post>(`${environment.firebaseDatabaseUrl}/posts/${id}.json`)
+      .pipe(map((post: Post) => ({
+        ...post,
+        id,
+        date: new Date(post.date)
+      })));
+  }
+
+  update(post: Post): Observable<Post> {
+    return this.http.patch<Post>(`${environment.firebaseDatabaseUrl}/posts/${post.id}.json`, post);
+  }
+
   remove(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.firebaseDatabaseUrl}/posts/${id}.json`);
   }
