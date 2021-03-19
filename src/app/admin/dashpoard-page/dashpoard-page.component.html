@@ -1,7 +1,7 @@
 <div *ngIf="posts.length; else loading">
-  <div class="form-control">
+  <label class="form-control">
     <input type="text" placeholder="Search" [(ngModel)]="search">
-  </div>
+  </label>
   <table class="table">
     <thead>
     <tr>
@@ -23,7 +23,7 @@
                 class="btn btn-link btn-view"
                 [routerLink]="['/admin', 'post', post.id, 'edit']"
         >
-          View
+          Edit
         </button>
         <a *ngIf="post.id" (click)="remove(post.id)">Delete</a>
       </td>
