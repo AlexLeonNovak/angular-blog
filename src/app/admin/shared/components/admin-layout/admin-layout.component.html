@@ -2,7 +2,7 @@
 
   <a routerLink="/">Admin panel</a>
 
-  <ul>
+  <ul *ngIf="auth.isAuthenticated()">
     <li routerLinkActive="active">
       <a [routerLink]="['/admin', 'dashboard']">Home</a>
     </li>

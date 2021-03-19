@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {User} from "../../../shared/interfaces";
-import {Observable} from "rxjs";
+import {Observable, Subject, throwError} from "rxjs";
 import {environment} from "../../../../environments/environment";
-import {tap} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 import {FirebaseAuthResponse} from "../../../shared/interfaces";
 
 @Injectable()
 export class AuthService {
 
-  private API_KEY = 'AIzaSyCOqPpPi5e2b6FShN9nLlNbeSDqQ5GGjBA';
+  public error$: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
@@ -26,11 +26,12 @@ export class AuthService {
     user.returnSecureToken = true;
     return this.http.post<FirebaseAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
-        tap(this.setToken)
+        tap(this.setToken),
+        catchError(this.handleError.bind(this))
       );
   }
 
-  logout() {
+  logout(): void {
     this.setToken(null);
   }
 
@@ -46,5 +47,24 @@ export class AuthService {
     } else {
       localStorage.clear();
     }
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<string>
+  {
+    const {message} = error.error.error;
+
+    switch (message) {
+      case 'EMAIL_NOT_FOUND' :
+        this.error$.next('Email not found');
+        break;
+      case 'INVALID_PASSWORD':
+        this.error$.next('Invalid password');
+        break;
+      case 'USER_DISABLED':
+        this.error$.next('User disabled');
+        break;
+    }
+
+    return throwError(error);
   }
 }
