@@ -5,13 +5,13 @@ import {Subscription} from "rxjs";
 import {AlertService} from "../shared/services/alert.service";
 
 @Component({
-  selector: 'app-dashpoard-page',
-  templateUrl: './dashpoard-page.component.html',
-  styleUrls: ['./dashpoard-page.component.scss']
+  selector: 'app-dashboard-page',
+  templateUrl: './dashboard-page.component.html',
+  styleUrls: ['./dashboard-page.component.scss']
 })
-export class DashpoardPageComponent implements OnInit, OnDestroy {
+export class DashboardPageComponent implements OnInit, OnDestroy {
 
-  posts: Post[] = [];
+  public posts: Post[] = [];
   protected postSubscription: Subscription = new Subscription();
   protected deleteSubscription: Subscription = new Subscription();
   search = '';
